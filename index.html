@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    <meta charset="utf-8">
+    <title>お問合わせフォーム</title>
+    <link rel=stylesheet type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="contact-wrapper">
+        <h1>お問合わせフォーム</h1>
+        <form method="post" action="mail_confirm.php">
+<!--    
+問い合わせフォームが動く仕組み
+index.htmlのフォームで入力された情報は、PHPファイルに引き渡され、PHPファイルからDBへ通信接続がされ最終的に情報はDBに格納される（DBに情報を移す際にはSQL文が使われる）
+
+formタグの中にあるmethodにはpostと記述し、actionにはファイル名を記述する
+postメソッド（post通信）とはファイル間で、何らかの情報を引き渡す方法を指す
+actionで指定するファイル名には、情報の引き渡し先のPHPファイルを指定する
+よってactionのファイル名にはPHPファイルの名前が記述される
+-->
+            <div class="form">  
+                <p>名前<input type="text" name="name" class="input"></p>
+<!--
+今までinputのname欄にはXXXを入れてきたが、ここには「箱の名前」を記述する
+phpファイルに情報を引き渡す際は、この箱の名前を指定する
+よってなんの情報が入っているかわかるような名前をつけるのがベター
+-->
+            </div>
+            <div class="form">
+                <p>メールアドレス<input type="text" name="mail" class="input"></p>
+            </div>
+            <div class="form">
+                <p>年齢
+                    <select class="dropdown" name="age">
+                        <option>選択してください</option>
+                        <script>
+                            for (var i = 18; i <= 65; i++) {
+                                document.write("<option>");
+                                document.write(i);
+                                document.write("</option>");
+                            }
+                        </script>
+                    </select>
+                </p>
+            </div>
+<!--
+年齢のプルダウンメニューにはscriptタグを用いている
+変数iに18を代入し、65以下になるまでループさせ、本来メニューの選択肢に表示させる内容をiとしている
+-->
+            <div class="form">
+                <p>コメント
+                    <textarea name="comments" rows="8" cols="40" class="input"></textarea>
+                </p>
+            </div>
+            <div class="form">
+                <input type="submit" value="送信する" class=submit>
+            </div>
+<!--
+form内のdivにformクラスをつけることでCSSで並べやすくしてあります
+-->
+        </form>
+    </div>
+</body>
+</html>
